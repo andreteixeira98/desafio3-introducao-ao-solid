@@ -45,15 +45,15 @@ class UsersRepository implements IUsersRepository {
     const userIndex = this.users.findIndex(
       (user) => user.id === receivedUser.id
     );
-    if (userIndex) {
-      const userUpdated = receivedUser;
-      userUpdated.admin = true;
-      userUpdated.updated_at = new Date();
-      this.users.splice(userIndex, 1, userUpdated);
-      return userUpdated;
+    if (userIndex < 0) {
+      throw new Error("these is no user that is");
     }
+    const userUpdated = receivedUser;
+    userUpdated.admin = true;
+    userUpdated.updated_at = new Date();
+    this.users.splice(userIndex, 1, userUpdated);
 
-    return null;
+    return userUpdated;
   }
 
   list(): User[] {
