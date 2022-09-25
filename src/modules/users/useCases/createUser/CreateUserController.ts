@@ -10,11 +10,11 @@ class CreateUserController {
       const { name, email } = request.body;
       const user = this.createUserUseCase.execute({ name, email });
 
-      if (!user) throw new Error("there is already a user with this email");
+      // if (!user) throw new Error("there is already a user with this email");
 
       return response.status(201).json(user);
     } catch (error) {
-      return response.status(400).json(error);
+      return response.status(400).json({ error: error.message });
     }
   }
 }
