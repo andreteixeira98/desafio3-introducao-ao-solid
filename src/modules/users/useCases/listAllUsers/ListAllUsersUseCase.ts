@@ -15,7 +15,7 @@ class ListAllUsersUseCase {
       throw new Error("there is not user exists");
     }
     if (!userAlReadyExist.admin) {
-      throw new Error("is not admin user");
+      throw new Error("unauthorized user");
     }
     return this.usersRepository.list();
   }
