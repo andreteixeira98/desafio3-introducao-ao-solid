@@ -5,7 +5,8 @@
         "version":"1.0.0",
         "description":"documenting challege two api with swagger",
         "contact":{
-            "email":"andreteixeira.developer@gmail.com"
+            "email":"andreteixeira.developer@gmail.com",
+            "name":"Andre Teixeira Vaz"
         }
     },
     "paths":{
@@ -15,7 +16,7 @@
                 "summary":"create new user",
                 "description":"create new user",
                 "requestBody":{
-                    "description":"receive name and email of the user by request body",
+                    "description":"receive name and email by request body",
                     "required":"true",
                     "content":{
                         "aplication/json":{
@@ -286,10 +287,10 @@
                     {
                         "in":"path",
                         "name":"user_id",
-                        "required":"true",
                         "schema":{
                             "type":"string"
                         },
+                        "required":"true",
                         "example":{
                             "user_id":"string of uuid valide"
                         }
@@ -302,7 +303,7 @@
                                 "schema":{
                                     "type":"object",
                                     "properties":{
-                                        "id":{
+                                        "user_id":{
                                             "type":"string",
                                             "format":"uuid"
                                         },
@@ -325,7 +326,7 @@
                                         }
                                     },
                                     "example":{
-                                        "id":"string of uuid valid",
+                                        "user_id":"string of uuid valid",
                                         "admin":"true",
                                         "name":"name sample",
                                         "email":"sample@gmail.com",
