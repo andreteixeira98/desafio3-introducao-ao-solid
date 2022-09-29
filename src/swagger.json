@@ -19,7 +19,7 @@
                     "description":"receive name and email by request body",
                     "required":"true",
                     "content":{
-                        "aplication/json":{
+                        "application/json":{
                             "schema":{
                                 "type":"object",
                                 "properties":{
@@ -42,7 +42,7 @@
                     "201":{
                         "description":"request success",
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
@@ -83,7 +83,7 @@
                     "400":{
                         "description":"Error on request",
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
@@ -99,105 +99,103 @@
                             }
                         }
                     }
-                    
-            
                 }
             },
             "get":{
-                "tags":["users"],
-                "summary":"get list all users",
-                "description":"get list all users only is admin user",
-                "parameters":[
-                    {
-                        "in":"header",
-                        "name":"user_id",
-                        "description":"string of uuid valide",
-                        "required":"true",
-                        "schema":{
-                            "type":"string",
-                            "format":"uuid"
-                        },
-                        "example":{
-                            "user_id":"string of uuid valide"
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "content":{
-                            "aplication/json":{
-                                "schema":{
-                                    "type":"array",
-                                    "items":{
-                                        "type":"object",
-                                        "properties":{
-                                            "id":{
-                                                "type":"string",
-                                                "format":"uuid"
-                                            },
-                                            "admin":{
-                                                "type":"boolean"
-                                            },
-                                            "name":{
-                                                "type":"string"
-                                            },
-                                            "email":{
-                                                "type":"string"
-                                            },
-                                            "created_at":{
-                                                "type":"string",
-                                                "format":"Date"
-                                            },
-                                            "updated_at":{
-                                                "type":"string",
-                                                "format":"Date"
-                                            }
-                                        }
-                                    },
-                                    "example":[
-                                        {
-                                            "id":"string of uuid valid",
-                                            "admin":"false",
-                                            "name":"name sample",
-                                            "email":"sample@gmail.com",
-                                            "created_at":"YYYY-MM-DDTHH:mm:ss.sssZ",
-                                            "updated_at":"YYYY-MM-DDTHH:mm:ss.sssZ"
-                                        },
-                                        {
-                                            "id":"string of uuid valid",
-                                            "admin":"false",
-                                            "name":"name sample",
-                                            "email":"sample@gmail.com",
-                                            "created_at":"YYYY-MM-DDTHH:mm:ss.sssZ",
-                                            "updated_at":"YYYY-MM-DDTHH:mm:ss.sssZ"
-                                        }
-                                    ]
-                                    
-                                }
-                            }
-                        }
-                    },
-                    "400":{
-                        "content":{
-                            "aplication/json":{
-                                "schema":{
-                                    "type":"object",
-                                    "properties":{
-                                        "error":{
-                                            "type":"string"
-                                        }
-                                    },
-                                    "example":{
-                                        "error":"unauthorized user"
-                                    }
-                                }
-                            }
-                        }
-                    }
+              "tags":["users"],
+              "summary":"get list all users",
+              "description":"get list all users only is admin user",
+              "parameters":[
+                {
+                  "in":"header",
+                  "name":"user_id",
+                  "description":"string of uuid valid",
+                  "required":"true",
+                  "schema":{
+                      "type":"string",
+                      "format":"uuid"
+                  },
+                  "example":{
+                    "user_id":"string of uuid valide"
+                  }
                 }
+              ],
+              "responses":{
+                "200":{
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "type":"array",
+                        "items":{
+                            "type":"object",
+                            "properties":{
+                                "id":{
+                                    "type":"string",
+                                    "format":"uuid"
+                                },
+                                "admin":{
+                                    "type":"boolean"
+                                },
+                                "name":{
+                                    "type":"string"
+                                },
+                                "email":{
+                                    "type":"string"
+                                },
+                                "created_at":{
+                                    "type":"string",
+                                    "format":"Date"
+                                },
+                                "updated_at":{
+                                    "type":"string",
+                                    "format":"Date"
+                                }
+                            }
+                        },
+                        "example":[
+                            {
+                                "id":"string of uuid valid",
+                                "admin":"false",
+                                "name":"name sample",
+                                "email":"sample@gmail.com",
+                                "created_at":"YYYY-MM-DDTHH:mm:ss.sssZ",
+                                "updated_at":"YYYY-MM-DDTHH:mm:ss.sssZ"
+                            },
+                            {
+                                "id":"string of uuid valid",
+                                "admin":"false",
+                                "name":"name sample",
+                                "email":"sample@gmail.com",
+                                "created_at":"YYYY-MM-DDTHH:mm:ss.sssZ",
+                                "updated_at":"YYYY-MM-DDTHH:mm:ss.sssZ"
+                            }
+                        ]
+                          
+                      }
+                          }
+                      }
+                  },
+                  "400":{
+                      "content":{
+                          "application/json":{
+                              "schema":{
+                                  "type":"object",
+                                  "properties":{
+                                      "error":{
+                                          "type":"string"
+                                      }
+                                  },
+                                  "example":{
+                                      "error":"unauthorized user"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
             }
         },
-        "/users/user_id/admin":{
+        "/users/{user_id}/admin":{
             "patch":{
                 "tags":["users"],
                 "summary":"to turn user admin",
@@ -206,11 +204,11 @@
                 {
                     "in":"path",
                     "name":"user_id",
-                    "description":"string of uuid valide",
-                    "required":"true",
+                    "description":"string of uuid valid",
+                    "required":true,
                     "schema":{
-                        "type":"string",
-                        "format":"uuid"
+                      "type":"string",
+                      "format":"uuid"
                     }
                 }
                 ],
@@ -218,7 +216,7 @@
                     "200":{
                         "description":"successful request",
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
@@ -259,7 +257,7 @@
                     "404":{
                         "description":"user_id not found",
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
@@ -278,7 +276,7 @@
             }
             
         },
-        "/users/user_id":{
+        "/users/{user_id}":{
             "get":{
                 "tags":["users"],
                 "summary":"get a user by user_id",
@@ -287,10 +285,8 @@
                     {
                         "in":"path",
                         "name":"user_id",
-                        "schema":{
-                            "type":"string"
-                        },
-                        "required":"true",
+                        "type":"string",
+                        "required":true,
                         "example":{
                             "user_id":"string of uuid valide"
                         }
@@ -299,11 +295,11 @@
                 "responses":{
                     "200":{
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
-                                        "user_id":{
+                                        "id":{
                                             "type":"string",
                                             "format":"uuid"
                                         },
@@ -326,7 +322,7 @@
                                         }
                                     },
                                     "example":{
-                                        "user_id":"string of uuid valid",
+                                        "id":"string of uuid valid",
                                         "admin":"true",
                                         "name":"name sample",
                                         "email":"sample@gmail.com",
@@ -339,10 +335,15 @@
                     },
                     "404":{
                         "content":{
-                            "aplication/json":{
+                            "application/json":{
                                 "schema":{
                                     "type":"object",
                                     "properties":{
+                                        "error":{
+                                            "type":"string"
+                                        }
+                                    },  
+                                    "example":{
                                         "error":"user_id not found"
                                     }
                                 }
